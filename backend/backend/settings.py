@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import environ
 from pathlib import Path
 from dotenv import load_dotenv
 from datetime import timedelta
@@ -19,6 +19,10 @@ import os
 load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+MJ_APIKEY_PUBLIC = env('MJ_APIKEY_PUBLIC')
+MJ_APIKEY_PRIVATE = env('MJ_APIKEY_PRIVATE')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
